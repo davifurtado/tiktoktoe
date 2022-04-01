@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Square from './components/Square';
+import WinningPatterns from './assets/WinningPatterns'
 
 import './App.css';
 
@@ -8,19 +9,38 @@ function App() {
   const [playerOne, setPlayerOne] = useState("X")
   const [playerTwo, setPlayerTwo] = useState("O")
   const [currentPlayer, setCurrentPlayer] = useState(null)
+  const [currentMove, setCurrentMove] = useState(0)
 
   const onClickSquare = (squareIndex) => {
+    if (board[squareIndex]) return false;
+    
     const newBoard = [...board]
-    if (newBoard[squareIndex]) return false;
-
     newBoard[squareIndex] = currentPlayer || playerOne
+
     setBoard(newBoard)
+    setCurrentMove(currentMove + 1)
+
     if (currentPlayer === playerOne || !currentPlayer) {
       setCurrentPlayer(playerTwo)
     } else {
       setCurrentPlayer(playerOne)
     }
+
+    if (currentMove > 3) checkWinCondition(newBoard)
     
+  }
+
+  const checkWinCondition = (board) => {
+    WinningPatterns.forEach((pattern) => {
+
+      const firstSquare = board[pattern[0]]
+      // For scalability this could've been done with a for or foreach loop but since we have 3 fixed values 
+      // for performance reasons I'm comparing them statically (cheaper than looping through the array)
+      if (firstSquare && firstSquare === board[pattern[1]] && firstSquare === board[pattern[2]]) {
+        window.alert(`Winner: ${currentPlayer}`)
+      }
+    })
+
   }
 
   return (
