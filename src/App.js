@@ -11,19 +11,19 @@ function App() {
     <div className="App">
       <div className="board">
         <div className="boardRow">
-          <Square val={board[0] || ""} />
-          <Square val={board[1] || ""} />
-          <Square val={board[2] || ""} />
+          <Square value={board[0] || ""} />
+          <Square value={board[1] || ""} />
+          <Square value={board[2] || ""} />
         </div>
         <div className="boardRow">
-          <Square val={board[0] || ""} />
-          <Square val={board[1] || ""} />
-          <Square val={board[2] || ""} />
+          <Square value={board[0] || ""} />
+          <Square value={board[1] || ""} />
+          <Square value={board[2] || ""} />
         </div>
         <div className="boardRow">
-          <Square val={board[0] || ""} />
-          <Square val={board[1] || ""} />
-          <Square val={board[2] || ""} />
+          <Square value={board[0] || ""} />
+          <Square value={board[1] || ""} />
+          <Square value={board[2] || ""} />
         </div>
       </div>
     </div>
