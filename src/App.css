@@ -8,16 +8,18 @@ body {
   height: 100vh;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .board {
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
   border: 1px solid black;
   display: flex;
+  flex-direction: column;
 }
 
-.row {
+.boardRow {
   flex: 33%;
   display: flex;
   flex-direction: row;
