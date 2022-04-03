@@ -24,3 +24,15 @@ body {
   display: flex;
   flex-direction: row;
 }
+
+.playersDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.playerInput {
+  margin: 0px 0px 5px 0px;
+
+}
