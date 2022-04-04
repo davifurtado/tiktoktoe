@@ -5,11 +5,12 @@ import WinningPatterns from './assets/WinningPatterns'
 import './App.css';
 
 function App() {
-  const [board, setBoard] = useState(["", "", "", "", "", "", "", "", ""]);
-  const [playerOne, setPlayerOne] = useState({ name: "X", letter: "X" })
-  const [playerTwo, setPlayerTwo] = useState({ name: "O", letter: "O" })
+  const [board, setBoard] = useState(["T", "I", "K", "T", "O", "K", "T", "O", "E"]);
+  const [playerOne, setPlayerOne] = useState({ name: "Player 1", letter: "X" })
+  const [playerTwo, setPlayerTwo] = useState({ name: "Player 2", letter: "O" })
   const [currentPlayer, setCurrentPlayer] = useState({ name: "X", letter: "X" })
   const [currentMove, setCurrentMove] = useState(0)
+  const [scores, setScores] = useState({ X: 0, O: 0 })
 
   const onClickSquare = (squareIndex) => {
     if (board[squareIndex]) return false;
@@ -36,6 +37,9 @@ function App() {
       // For scalability this could've been done with a for or foreach loop but since we have 3 fixed values 
       // for performance reasons I'm comparing them statically (cheaper than looping through the array)
       if (firstSquare && firstSquare === board[pattern[1]] && firstSquare === board[pattern[2]]) {
+        const newScores = {...scores}
+        newScores[currentPlayer.letter] = newScores[currentPlayer.letter] + 1 
+        setScores(newScores)
         window.alert(`Winner: ${currentPlayer.name}`)
       }
     })
@@ -45,21 +49,23 @@ function App() {
     e.preventDefault()
 
     setCurrentPlayer(playerOne)
+    setBoard(["", "", "", "", "", "", "", "", ""])
   }
 
   return (
     <div className="App">
+      <h1>Welcome to Tik Tok Toe. Choose your name and press Start to play!</h1>
       <div>
         <form onSubmit={startGame} className="playersDiv">
           <div className="playerInput">
-            <label>Player One (X): </label>
-            <input type="text" id="playerone" value={playerOne?.name || ""} onChange={(e) => setPlayerOne({ name: e.target.value, letter: "X" })} />
+            <label>X: </label>
+            <input type="text" id="playerone" value={playerOne?.name || ""} onChange={(e) => setPlayerOne({ name: e.target.value, letter: "X" })} maxLength={18} />
           </div>
           <div className="playerInput">
-            <label>Player Two (O): </label>
-            <input type="text" id="playertwo" value={playerTwo?.name || ""} onChange={(e) => setPlayerTwo({ name: e.target.value, letter: "O" })} />
+            <label>O: </label>
+            <input type="text" id="playertwo" value={playerTwo?.name || ""} onChange={(e) => setPlayerTwo({ name: e.target.value, letter: "O" })} maxLength={18} />
           </div>
-          <input className="playerInput" type="submit" value="Start Game" onClick={startGame} />
+          <input className="playerInput" type="submit" value="Start" onClick={startGame} />
         </form>
         <div className="board">
           <div className="boardRow">
@@ -104,6 +110,11 @@ function App() {
               onClickSquare={() => onClickSquare(8)}
             />
           </div>
+        </div>
+        <div className="playersDiv">
+          <label>Scores:</label>
+          <label>{playerOne?.name} (X): {scores[playerOne.letter]}</label>
+          <label>{playerTwo?.name} (X): {scores[playerTwo.letter]}</label>
         </div>
       </div>
     </div>
