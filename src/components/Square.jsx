@@ -2,9 +2,9 @@ import React from "react";
 import "./square.css";
 
 
-function Square({ value, onClickSquare }) {
+function Square({ value, onClickSquare, winningSquare }) {
   return (
-    <div className="square" onClick={onClickSquare}>
+    <div className={winningSquare ? "winningSquare" : "square"} onClick={onClickSquare}>
       {value}
     </div>
   );
