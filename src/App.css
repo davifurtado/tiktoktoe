@@ -20,6 +20,34 @@ body {
   flex-direction: column;
 }
 
+@media screen and (max-width: 500px) {
+  .board {
+    width: 400px;
+    height: 400px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .board {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .board {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+@media screen and (max-width: 250px) {
+  .board {
+    width: 180px;
+    height: 180px;
+  }
+}
+
 .boardRow {
   flex: 33%;
   display: flex;
